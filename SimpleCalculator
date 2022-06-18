@@ -1,0 +1,70 @@
+fun main(args: Array<String>) {
+val MathOperators = arrayOf("+", "-", "*", "/")
+val number1 = Number1()
+val number2 = Number2()
+val inputOperator = Operations(MathOperators)
+val res = Result(number1, number2, inputOperator)
+}
+fun Number1(): String {
+    var isValidInput = false
+    var UserChoice = ""
+    println("Введите целое число №1:")
+    while(!isValidInput) {
+        val UserInput = readLine()
+        if (UserInput != null && UserInput !="" && UserInput.all { it.isDigit()}) {
+            isValidInput = true
+            UserChoice = UserInput
+            println("Вы ввели число: $UserChoice")
+            }
+        else { println("Введено некорректное значение, введите число.") }
+        }
+    return UserChoice
+                     }
+
+fun Number2(): String {
+    var isValidInput = false
+    var UserChoice = ""
+    println("Введите целое число №2:")
+    while(!isValidInput) {
+        val UserInput = readLine()
+        if (UserInput != null && UserInput !="" && UserInput.all { it.isDigit()}) {
+            isValidInput = true
+            UserChoice = UserInput
+            println("Вы ввели число: $UserChoice")
+        }
+        else { println("Введено некорректное значение, введите число.") }
+    }
+    return UserChoice
+                        }
+
+fun Operations(option: Array<String>): String {
+    var isValidInput = false
+    var UserChoice = ""
+    println("Введите математический оператор")
+    while (!isValidInput) {
+        for (item in option) print(" $item")
+        println(".")
+        val UserInput = readLine()
+        if (UserInput != null && UserInput in option) {
+            isValidInput = true
+            UserChoice = UserInput
+            println("Выбрано действие: $UserChoice")
+        }
+        if (!isValidInput) {
+            println("Введите нужный оператор")
+        }
+    }
+    return UserChoice
+}
+
+fun Result(first_param: String, second_param: String, third_param: String): Int {
+    var result:Int = 0
+        when(third_param) {
+            "-" -> result = first_param.toInt() - second_param.toInt()
+            "+" -> result = first_param.toInt() + second_param.toInt()
+            "*" -> result = first_param.toInt() * second_param.toInt()
+            "/" -> result = first_param.toInt() / second_param.toInt()
+        }
+        println(result)
+        return result
+    }
